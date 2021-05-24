@@ -19,5 +19,11 @@ fun Application.configureRouting() {
 
             call.respondText("Hello World!")
         }
+
+        get("/iphones/{page}") {
+            val pageNumber = call.parameters["page"]
+
+            call.respondText("Your are on Page number: $pageNumber")
+        }
     }
 }
