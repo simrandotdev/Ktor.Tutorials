@@ -4,6 +4,7 @@ import io.ktor.routing.*
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.request.*
+import kotlinx.serialization.Serializable
 
 fun Application.configureRouting() {
 
@@ -25,5 +26,18 @@ fun Application.configureRouting() {
 
             call.respondText("Your are on Page number: $pageNumber")
         }
+
+        post("/login") {
+
+            val userInfo = call.receive<UserInfo>()
+            print(userInfo)
+            call.respondText("Everything working.")
+        }
     }
 }
+
+@Serializable
+data class UserInfo(
+    val email: String,
+    val password: String
+)
